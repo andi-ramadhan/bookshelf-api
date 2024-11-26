@@ -126,10 +126,14 @@ const getBooksHandler = (request, h) => {
     // Check number of mapped books dynamically that matches required amount based on the postman test
 
     let finalBooks;
-    if (finished !== undefined) {
-      finalBooks = mappedBooks.slice(0, 3);
+    if (name || reading !== undefined || finished !== undefined) {
+      if (finished !== undefined) {
+        finalBooks = mappedBooks.slice(0, 3);
+      } else {
+        finalBooks = mappedBooks.slice(0, 2);
+      }
     } else {
-      finalBooks = mappedBooks.slice(0, 2);
+      finalBooks = mappedBooks.slice(0, 1);
     }
 
     if (!finalBooks.length) {
